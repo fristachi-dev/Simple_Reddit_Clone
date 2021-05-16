@@ -41,7 +41,7 @@ const Thread = ({ check, theme, darkmode }) => {
 
     try {
       const req = await axios
-        .post("http://localhost:5000/users/upvote", user, {
+        .post("/api/users/upvote", user, {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
           },
@@ -63,7 +63,7 @@ const Thread = ({ check, theme, darkmode }) => {
 
     try {
       const req = await axios
-        .post("http://localhost:5000/users/downvote", user, {
+        .post("/api/users/downvote", user, {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
           },
@@ -95,12 +95,10 @@ const Thread = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios
-        .get("http://localhost:5000/users/")
-        .then((res) => {
-          let temp = postArr(res.data);
-          setThread(findThread(temp, data.state.id));
-        });
+      const res = await axios.get("/api/users/").then((res) => {
+        let temp = postArr(res.data);
+        setThread(findThread(temp, data.state.id));
+      });
       setLoaded(true);
     } catch (err) {
       console.log(err);

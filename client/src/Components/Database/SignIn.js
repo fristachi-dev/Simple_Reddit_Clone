@@ -27,7 +27,7 @@ const SignIn = ({ check }) => {
     };
     console.log(user);
 
-    await axios.post("http://localhost:5000/users/signin", user).then((res) => {
+    await axios.post("/api/users/signin", user).then((res) => {
       if (res.data.msg == "user does not exist") {
         setErrorMsg(res.data.msg);
       } else if (res.data.msg == "wrong password") {

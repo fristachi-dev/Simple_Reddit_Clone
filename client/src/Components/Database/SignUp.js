@@ -27,7 +27,7 @@ const SignUp = ({ check }) => {
     };
     console.log(user);
 
-    await axios.post("http://localhost:5000/users/signup", user).then((res) => {
+    await axios.post("/api/users/signup", user).then((res) => {
       if (res.data.msg == "User already exist") {
         setErrorMsg(res.data.msg);
       } else {

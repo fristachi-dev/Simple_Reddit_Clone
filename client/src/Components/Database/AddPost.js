@@ -30,7 +30,7 @@ const AddPost = ({ getdata, darkmode }) => {
     console.log(user);
 
     const req = await axios
-      .post("http://localhost:5000/users/newpost", user, {
+      .post("/api/users/newpost", user, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

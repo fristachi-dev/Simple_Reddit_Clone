@@ -22,7 +22,7 @@ const AddComment = ({ username, post, getdata, darkmode }) => {
     console.log(user);
 
     await axios
-      .post("http://localhost:5000/users/newcomment", user, {
+      .post("/api/users/newcomment", user, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

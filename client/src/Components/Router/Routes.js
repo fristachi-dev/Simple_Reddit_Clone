@@ -28,8 +28,8 @@ const Routes = () => {
   const getData = async () => {
     try {
       const res = await axios
-        .get(window.location.host + "/users/")
-        // .get("http://localhost:5000/users/")
+        // .get(window.location.host + "/users/")
+        .get("/api/users")
         .then((res) => {
           setUsers(res.data);
           console.log("fetch");
@@ -43,13 +43,11 @@ const Routes = () => {
   };
 
   const loggedIn = () => {
-    // if (users.some((user) => user.username == localStorage.getItem("user"))) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-
-    return false;
+    if (users.some((user) => user.username == localStorage.getItem("user"))) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   useEffect(() => {

@@ -82,12 +82,10 @@ const PostFeed = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios
-        .get("http://localhost:5000/users/")
-        .then((res) => {
-          console.log("yeet");
-          setPost(postArr(res.data));
-        });
+      const res = await axios.get("/api/users/").then((res) => {
+        console.log("yeet");
+        setPost(postArr(res.data));
+      });
       setLoaded(true);
     } catch (err) {
       console.log(err);
