@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
+const app = express();
+const port = process.env.PORT || 5000;
+
 const path = require("path");
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
@@ -14,23 +17,24 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// const whitelist = ["http://localhost:3000", "http://localhost:8080"];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     console.log("** Origin of request " + origin);
-//     if (whitelist.indexOf(origin) !== -1 || !origin) {
-//       console.log("Origin acceptable");
-//       callback(null, true);
-//     } else {
-//       console.log("Origin rejected");
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
-// app.use(cors(corsOptions));
-
-const app = express();
-const port = process.env.PORT || 5000;
+const whitelist = [
+  "http://localhost:3000",
+  "http://localhost:8080",
+  "http://localhost:5000",
+];
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log("** Origin of request " + origin);
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin acceptable");
+      callback(null, true);
+    } else {
+      console.log("Origin rejected");
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 app.use(cors());
 app.use(express.json());
