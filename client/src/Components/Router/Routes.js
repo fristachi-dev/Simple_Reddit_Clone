@@ -11,7 +11,7 @@ import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Routes = () => {
-  const [users, setUserse] = useState(0);
+  const [users, setUsers] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [checklogin, SetCheckLogIn] = useState(false);
   const [darkmode, setDarkMode] = useState(false);
@@ -29,8 +29,9 @@ const Routes = () => {
     try {
       const res = await axios
         .get(window.location.host + "/users/")
+        // .get("http://localhost:5000/users/")
         .then((res) => {
-          setUserse(res.data);
+          setUsers(res.data);
           console.log("fetch");
         });
       setLoaded(true);
@@ -42,11 +43,13 @@ const Routes = () => {
   };
 
   const loggedIn = () => {
-    if (users.some((user) => user.username == localStorage.getItem("user"))) {
-      return true;
-    } else {
-      return false;
-    }
+    // if (users.some((user) => user.username == localStorage.getItem("user"))) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+
+    return false;
   };
 
   useEffect(() => {
