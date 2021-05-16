@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+
+$theme-colors: (
+  "primary": #1484d6,
+  "secondary": #dae0e6,
+  "info": #cccccc,
+  "light": #f0f0f0,
+  "dark": #6b6b6b,
+  "warning": #353535,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 850px,
+  xl: 900px,
+);
+
+$link-color: black;
+
+.theme-dark {
+  background: #030303 !important;
+
+  p {
+    color: white !important;
+  }
+
+  h5 {
+    color: #d7dadc !important;
+  }
+
+  span {
+    color: #d7dadc !important;
+  }
+}
+
+.theme-dark-grey {
+  background: #1a1a1b !important;
+
+  p,
+  a,
+  .nav-highlight a {
+    color: white !important;
+  }
+
+  h5,
+  h2 {
+    color: #d7dadc !important;
+  }
+
+  span {
+    color: #d7dadc !important;
+  }
+
+  .border {
+    border-color: #353535 !important;
+  }
+
+  .nav-item {
+    color: white !important;
+  }
+
+  textarea,
+  input,
+  select,
+  .dropdown-item,
+  .dropdown-menu,
+  label {
+    color: white !important;
+    background: #1a1a1b !important;
+  }
+}
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+.arrow {
+  color: #8f8f8f !important;
+}
+
+.arrow:hover {
+  color: #1484d6 !important;
+  cursor: pointer;
+}
+
+.border-highlight:hover {
+  border: 1px solid #222 !important;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.border-highlight-dark:hover {
+  border: 1px solid rgb(226, 226, 226) !important;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-highlight:hover {
+  border: 1px solid #1484d6 !important;
+  background-color: white !important;
+}
+
+.nav-highlight a {
+  color: black !important;
+}
+
+.nav-highlight:hover {
+  border: 1px solid #e4e4e4 !important;
+  border-radius: 6px;
+  margin: -1px -1px;
+}
+
+.fit {
+  width: fit-content !important;
+  padding: 0 6px !important;
+}
+
+.Sports {
+  background-color: #e72b2b !important;
+}
+.Technology {
+  background-color: #1f1fbd !important;
+}
+.WorldNews {
+  background-color: #44c233 !important;
+}
+.VideoGames {
+  background-color: #b53bce !important;
+}
+.General {
+  background-color: #1484d6 !important;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+.tab-border {
+  border-radius: 0px !important;
+}
+
+@import "/node_modules/bootstrap/scss/bootstrap";
