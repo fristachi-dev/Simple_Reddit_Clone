@@ -49,9 +49,9 @@ const Routes = () => {
     //   return false;
     // }
 
-    // users.forEach((user) => {
-    //   user.username == localStorage.getItem("user") ? true : false;
-    // });
+    users.forEach((user) => {
+      console.log(user.username);
+    });
 
     for (let user of users) {
       if (user.username == localStorage.getItem("user")) return true;

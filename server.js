@@ -21,6 +21,7 @@ const whitelist = [
   "http://localhost:3000",
   "http://localhost:8080",
   "http://localhost:5000",
+  "https://threadit-simple-reddit-clone.herokuapp.com",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
