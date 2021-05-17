@@ -21,7 +21,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.18"
   },
-  "devDependencies": {
-    "http-proxy-middleware": "^2.0.0"
-  }
+  "devDependencies": {}
 }
