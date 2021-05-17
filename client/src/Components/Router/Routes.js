@@ -32,7 +32,7 @@ const Routes = () => {
         .get("/api/users")
         .then((res) => {
           setUsers(res.data);
-          console.log("fetch");
+          console.log(res.data[0].username);
         });
       setLoaded(true);
     } catch (err) {
