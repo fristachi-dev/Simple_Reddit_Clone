@@ -7,6 +7,10 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+const usersRouter = require("./routes/users");
+
+app.use("/api/users", usersRouter);
+
 const path = require("path");
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
@@ -51,10 +55,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
-
-const usersRouter = require("./routes/users");
-
-app.use("/api/users", usersRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
