@@ -43,11 +43,20 @@ const Routes = () => {
   };
 
   const loggedIn = () => {
-    if (users.some((user) => user.username == localStorage.getItem("user"))) {
-      return true;
-    } else {
-      return false;
+    // if (users.some((user) => user.username == localStorage.getItem("user"))) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+
+    // users.forEach((user) => {
+    //   user.username == localStorage.getItem("user") ? true : false;
+    // });
+
+    for (let user of users) {
+      if (user.username == localStorage.getItem("user")) return true;
     }
+    return false;
   };
 
   useEffect(() => {
