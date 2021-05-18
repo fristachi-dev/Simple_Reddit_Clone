@@ -11,16 +11,14 @@ const GetUser = () => {
 
   const getUser = (e) => {
     e.preventDefault();
-    axios
-      .get("http://localhost:5000/users/")
-      .then((res) => console.log(res.data));
+    axios.get("/users").then((res) => console.log(res.data));
     //.then(res => setDisplay(res.data[0].username));
   };
 
   const cur = (e) => {
     e.preventDefault();
     axios
-      .get("http://localhost:5000/users/n", {
+      .get("/users/n", {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

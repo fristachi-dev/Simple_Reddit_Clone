@@ -18,18 +18,20 @@ router.route("/").get(async (req, res) => {
 });
 
 router.route("/add").post(async (req, res) => {
-  const newUser = new User({
-    username: req.body.username,
-    firstName: req.body.fname,
-    lastName: req.body.lname,
-    age: req.body.age,
-    posts: [],
-  });
+  try {
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password,
+      posts: [],
+      firstName: "",
+      lastName: "",
+      email: "",
+    });
 
-  await newUser
-    .save()
-    .then((users) => res.json("User Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    await newUser.save();
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 router.route("/update").post(async (req, res) => {

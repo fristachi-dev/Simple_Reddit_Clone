@@ -29,7 +29,7 @@ const Routes = () => {
     try {
       const res = await axios
         // .get(window.location.host + "/users/")
-        .get("/api/users")
+        .get("/users")
         .then((res) => {
           setUsers(res.data);
           console.log("fetch users tried");

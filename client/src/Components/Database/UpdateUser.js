@@ -51,7 +51,7 @@ const UpdateUser = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios.get("/api/users/").then((res) => {
+      const res = await axios.get("/users/").then((res) => {
         setUsers(res.data);
         populate(res.data);
       });
@@ -77,7 +77,7 @@ const UpdateUser = ({ check, theme, darkmode }) => {
     console.log(user);
 
     await axios
-      .post("/api/users/update", user, {
+      .post("/users/update", user, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

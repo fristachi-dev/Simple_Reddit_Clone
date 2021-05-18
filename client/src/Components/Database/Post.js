@@ -45,7 +45,7 @@ const Post = ({
     //console.log(user)
 
     const req = await axios
-      .post("/api/users/upvote", user, {
+      .post("/users/upvote", user, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },
@@ -64,7 +64,7 @@ const Post = ({
     //console.log(user)
 
     const req = await axios
-      .post("/api/users/downvote", user, {
+      .post("/users/downvote", user, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

@@ -82,7 +82,7 @@ const PostFeed = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios.get("/api/users/").then((res) => {
+      const res = await axios.get("/users").then((res) => {
         console.log("yeet");
         setPost(postArr(res.data));
       });

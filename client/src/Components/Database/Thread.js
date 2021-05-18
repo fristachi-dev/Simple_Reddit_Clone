@@ -41,7 +41,7 @@ const Thread = ({ check, theme, darkmode }) => {
 
     try {
       const req = await axios
-        .post("/api/users/upvote", user, {
+        .post("/users/upvote", user, {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
           },
@@ -63,7 +63,7 @@ const Thread = ({ check, theme, darkmode }) => {
 
     try {
       const req = await axios
-        .post("/api/users/downvote", user, {
+        .post("/users/downvote", user, {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
           },
@@ -95,7 +95,7 @@ const Thread = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios.get("/api/users/").then((res) => {
+      const res = await axios.get("/users/").then((res) => {
         let temp = postArr(res.data);
         setThread(findThread(temp, data.state.id));
       });

@@ -35,7 +35,7 @@ const AddUser = () => {
     };
     console.log(user);
 
-    axios.post("/api/users/add", user).then((res) => {
+    axios.post("/users/add", user).then((res) => {
       console.log(res.data);
       setUpdate(!update);
     });
