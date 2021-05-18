@@ -6,7 +6,7 @@ import "../../scss/custom.scss";
 const AddPost = ({ getdata, darkmode }) => {
   const [post, setPost] = useState("");
   const [postTitle, setPostTitle] = useState("");
-  const [postSubject, setPostSubject] = useState("");
+  const [postSubject, setPostSubject] = useState("General");
   const [open, setOpen] = useState(false);
 
   const updatePost = (e) => {
@@ -38,6 +38,9 @@ const AddPost = ({ getdata, darkmode }) => {
       .then((res) => {
         getdata();
       });
+
+    setPost("");
+    setPostTitle("");
   };
 
   return (
@@ -67,6 +70,7 @@ const AddPost = ({ getdata, darkmode }) => {
                     placeholder="Create A Post Title..."
                     maxLength="200"
                     style={{ backgroundColor: "#f6f7f8" }}
+                    value={postTitle}
                   />
                 </Col>
               </Row>
@@ -81,6 +85,7 @@ const AddPost = ({ getdata, darkmode }) => {
                   as="textarea"
                   rows={3}
                   maxLength="3000"
+                  value={post}
                 />
                 <Row className="pt-3">
                   <Col>
