@@ -12,6 +12,7 @@ const PostFeed = ({ check, theme, darkmode }) => {
   const [loaded, setLoaded] = useState(false);
   const [sub, setSub] = useState(localStorage.getItem("sub"));
 
+  //Pull posts into seperate array
   const postArr = (arr) => {
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
@@ -20,7 +21,8 @@ const PostFeed = ({ check, theme, darkmode }) => {
       }
     }
 
-    temp.sort((a, b) => (a.likes > b.likes ? -1 : b.likes > a.likes ? 1 : 0));
+    //Sort post array by upvotes
+    temp.sort((a, b) => (a.votes > b.votes ? -1 : b.votes > a.votes ? 1 : 0));
 
     return temp;
   };
