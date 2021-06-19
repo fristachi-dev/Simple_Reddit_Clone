@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Button, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import "../../scss/custom.scss";
 
 const SignUp = ({ check }) => {
   const [username, setUser] = useState("");

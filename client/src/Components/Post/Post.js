@@ -1,9 +1,9 @@
 import axios from "axios";
-import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
+import "../../scss/custom.scss";
 
 const Post = ({
   postid,

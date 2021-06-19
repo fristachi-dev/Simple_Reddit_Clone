@@ -1,9 +1,7 @@
-import Navigation from "./Components/Nav/Nav";
 import { BrowserRouter as Router } from "react-router-dom";
-import "./scss/custom.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import Routes from "./Components/Router/Routes";
+import "./scss/custom.scss";
 
 function App() {
   return (

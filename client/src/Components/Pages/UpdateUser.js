@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "../Nav/Nav";
 import {
@@ -13,6 +12,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { CgArrowsExchangeAlt } from "react-icons/cg";
+import "../../scss/custom.scss";
 
 const UpdateUser = ({ check, theme, darkmode }) => {
   const [users, setUsers] = useState("");

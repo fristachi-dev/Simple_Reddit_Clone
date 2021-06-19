@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Row, Col, Button, Form, Collapse } from "react-bootstrap";
 import "../../scss/custom.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Button, Form, Collapse } from "react-bootstrap";
 
 const AddPost = ({ getdata, darkmode }) => {
   const [post, setPost] = useState("");

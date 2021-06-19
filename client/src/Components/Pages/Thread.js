@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../../scss/custom.scss";
+import { useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import Comment from "../Post/Comment";
+import AddComment from "../Post/AddComment";
 import Navigation from "../Nav/Nav";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import Comment from "./Comment";
-import AddComment from "./AddComment";
-import { useLocation } from "react-router-dom";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
+import "../../scss/custom.scss";
 
 const Thread = ({ check, theme, darkmode }) => {
   const [thread, setThread] = useState(0);

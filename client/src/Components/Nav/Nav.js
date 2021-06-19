@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SignOut from "../Login/SignOut";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../scss/custom.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import SignOut from "../Database/SignOut";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { CgFeed } from "react-icons/cg";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import "../../scss/custom.scss";
 
 const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
   const [sub, setSub] = useState(localStorage.getItem("sub"));

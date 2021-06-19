@@ -1,5 +1,5 @@
-import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../../scss/custom.scss";
 
 const SignOut = ({ check }) => {
   const deleteToken = () => {

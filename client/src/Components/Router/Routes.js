@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import UpdateUser from "../Database/UpdateUser";
-import PostFeed from "../Database/PostFeed";
-import SignUp from "../Database/SignUp";
-import SignIn from "../Database/SignIn";
-import Thread from "../Database/Thread";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import UpdateUser from "../Pages/UpdateUser";
+import PostFeed from "../Pages/PostFeed";
+import SignUp from "../Login/SignUp";
+import SignIn from "../Login/SignIn";
+import Thread from "../Pages/Thread";
 import { Spinner } from "react-bootstrap";
 import "../../scss/custom.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const Routes = () => {
   const [users, setUsers] = useState(0);
@@ -27,14 +27,11 @@ const Routes = () => {
 
   const getData = async () => {
     try {
-      const res = await axios
-        // .get(window.location.host + "/users/")
-        .get("/users")
-        .then((res) => {
-          setUsers(res.data);
-          console.log("fetch users tried");
-          console.log(res.data[0].username);
-        });
+      const res = await axios.get("/users").then((res) => {
+        setUsers(res.data);
+        // console.log("fetch users tried");
+        // console.log(res.data[0].username);
+      });
       setLoaded(true);
     } catch (err) {
       console.log(err);
@@ -44,16 +41,6 @@ const Routes = () => {
   };
 
   const loggedIn = () => {
-    // if (users.some((user) => user.username == localStorage.getItem("user"))) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-
-    // users.forEach((user) => {
-    //   console.log(user.username);
-    // });
-
     for (let user of users) {
       if (user.username == localStorage.getItem("user")) return true;
     }
@@ -69,9 +56,7 @@ const Routes = () => {
     <div className={darkmode ? "theme-dark" : "bg-secondary"}>
       {loaded ? (
         <div>
-          {/* {loggedIn() ? <Navigation check={check} /> : ""} */}
           <Switch>
-            {/* <Route path="/UserList" component={UserList} /> */}
             <Route
               path="/thread/:id"
               render={() =>
