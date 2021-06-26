@@ -30,6 +30,8 @@ const AddComment = ({ username, post, getdata, darkmode }) => {
       .then((res) => {
         getdata();
       });
+
+    setComment("");
   };
 
   return (
@@ -50,6 +52,7 @@ const AddComment = ({ username, post, getdata, darkmode }) => {
                 rows={3}
                 maxLength="3000"
                 className={darkmode ? "theme-dark-grey" : "bg-white"}
+                value={comment}
               />
             </Form.Group>
             <Button type="submit" className="rounded-pill float-right">

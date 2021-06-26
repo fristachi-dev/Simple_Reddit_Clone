@@ -28,7 +28,6 @@ const AddPost = ({ getdata, darkmode }) => {
       postSubject: postSubject,
       post: post,
     };
-    console.log(user);
 
     const req = await axios
       .post("/users/newpost", user, {
