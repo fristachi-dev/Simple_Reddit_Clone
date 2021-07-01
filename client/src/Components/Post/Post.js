@@ -94,7 +94,7 @@ const Post = ({
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowUp
-                        className="arrow"
+                        className="arrow arrow-up"
                         size={24}
                         onClick={() => likePost(postid)}
                       />
@@ -108,7 +108,7 @@ const Post = ({
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowDown
-                        className="arrow"
+                        className="arrow arrow-down"
                         size={24}
                         onClick={() => downVote(postid)}
                       />

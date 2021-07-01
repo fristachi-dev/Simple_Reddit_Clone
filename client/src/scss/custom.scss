@@ -18,6 +18,16 @@ $container-max-widths: (
 
 $link-color: black;
 
+.delete-comment {
+  font-size: 14px;
+  color: #ce0b0b !important;
+  cursor: pointer;
+}
+
+.delete-comment:hover {
+  text-decoration: underline;
+}
+
 .theme-dark {
   background: #030303 !important;
 
@@ -30,7 +40,7 @@ $link-color: black;
   }
 
   span {
-    color: #d7dadc !important;
+    color: #d7dadc;
   }
 }
 
@@ -45,11 +55,11 @@ $link-color: black;
 
   h5,
   h2 {
-    color: #d7dadc !important;
+    color: #c7c8c9 !important;
   }
 
   span {
-    color: #d7dadc !important;
+    color: #bbbcbd;
   }
 
   .border {
@@ -75,12 +85,21 @@ $link-color: black;
   font-family: "Rubik", sans-serif;
 }
 
-.arrow {
+.arrow-up {
   color: #8f8f8f !important;
 }
 
-.arrow:hover {
+.arrow-up:hover {
   color: #1484d6 !important;
+  cursor: pointer;
+}
+
+.arrow-down {
+  color: #8f8f8f !important;
+}
+
+.arrow-down:hover {
+  color: #df8611 !important;
   cursor: pointer;
 }
 
@@ -113,6 +132,8 @@ $link-color: black;
   width: fit-content !important;
   padding: 0 6px !important;
 }
+
+
 
 .Sports {
   background-color: #e72b2b !important;

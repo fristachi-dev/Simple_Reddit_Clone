@@ -76,6 +76,30 @@ const Thread = ({ check, theme, darkmode }) => {
     }
   };
 
+  const deleteComment = async (id) => {
+    const user = {
+      postid: thread._id,
+      user: thread.username,
+      commentid: id,
+      current: localStorage.getItem("user"),
+    };
+
+    try {
+      const req = await axios
+        .post("/users/deletecomment", user, {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          getData();
+          console.log(res.data.msg)
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const postArr = (arr) => {
     let temp = [];
     for (let i = 0; i < arr.length; i++) {
@@ -117,6 +141,7 @@ const Thread = ({ check, theme, darkmode }) => {
         theme={theme}
         darkmode={darkmode}
       />
+      
       <Row className="justify-content-md-center mt-5 pt-5">
         <Col
           className={
@@ -124,14 +149,18 @@ const Thread = ({ check, theme, darkmode }) => {
             (darkmode ? "theme-dark-grey border-warning" : "bg-white")
           }
         >
+
           {loaded ? (
+
             <div>
+              
               <Row className="d-flex align-items-center justify-content-center">
+
                 <Col xs={2} md={1} lg={1}>
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowUp
-                        className="arrow"
+                        className="arrow-up"
                         size={24}
                         onClick={() => likePost(thread.id)}
                       />
@@ -145,14 +174,14 @@ const Thread = ({ check, theme, darkmode }) => {
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowDown
-                        className="arrow"
+                        className="arrow-down"
                         size={24}
                         onClick={() => downVote(thread.id)}
                       />
                     </Col>
                   </Row>
                 </Col>
-
+       
                 <Col className="pl-0">
                   <Row className="mt-3">
                     <Col
@@ -199,7 +228,9 @@ const Thread = ({ check, theme, darkmode }) => {
                     </Col>
                   </Row>
                 </Col>
+              
               </Row>
+              
               <Row>
                 <Col>
                   <AddComment
@@ -211,26 +242,35 @@ const Thread = ({ check, theme, darkmode }) => {
                   />
                 </Col>
               </Row>
+              
               <hr></hr>
+              
               <Row>
                 <Col>
                   {thread.comments.map((item) => (
                     <Comment
                       key={"com" + item._id}
+                      commentid={item._id}
                       username={item.username}
                       date={item.date}
                       comment={item.comment}
+                      deleteComment={deleteComment}
                       darkmode={darkmode}
+                      currentUser={localStorage.getItem("user")}
                     />
                   ))}
                 </Col>
               </Row>
+            
             </div>
+
           ) : (
             <Spinner animation="border" />
           )}
+
         </Col>
       </Row>
+    
     </Container>
   );
 };

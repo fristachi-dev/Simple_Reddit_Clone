@@ -2,7 +2,7 @@ import "../../scss/custom.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Comment = ({ username, date, comment, darkmode }) => {
+const Comment = ({ commentid, username, date, comment, deleteComment, darkmode, currentUser }) => {
   const getDate = (newdate) => {
     let date = new Date(newdate);
     let year = date.getFullYear();
@@ -19,6 +19,10 @@ const Comment = ({ username, date, comment, darkmode }) => {
     let res = `${dt}-${month}-${year}`;
     return res;
   };
+
+  const getId = () => {
+    deleteComment(commentid)
+  }
 
   return (
     <Container
@@ -46,6 +50,16 @@ const Comment = ({ username, date, comment, darkmode }) => {
           >
             {getDate(date)}
           </span>
+          {currentUser == username ? (
+            <span
+              className="float-right delete-comment"
+              onClick={getId}
+            >
+              delete
+            </span>
+          ) : (
+            <div></div>
+          )}
           <p className="mx-1 my-2">{comment}</p>
         </Col>
       </Row>
