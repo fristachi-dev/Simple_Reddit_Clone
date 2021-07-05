@@ -316,5 +316,24 @@ router.route("/deletecomment").post(auth, async (req, res) => {
   }
 });
 
+//remove post
+router.route("/deletepost").post(auth, async (req, res) => {
+  try {
+    //find user
+    let user = await User.findOne({ username: req.body.user });
+    //find post
+    const i = await user.posts.findIndex((x) => x._id == req.body.postid);
+    //remove post
+    await user.posts.splice(i, 1,);
+    //save and update
+    await user.save();
+    const update = await User.find();
+    res.json(update);
+
+  } catch (err) {
+    res.json({ message: "error" });
+  }
+});
+
 module.exports = router;
 

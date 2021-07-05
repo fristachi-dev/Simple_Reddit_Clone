@@ -133,6 +133,15 @@ $link-color: black;
   padding: 0 6px !important;
 }
 
+.delete-post {
+  font-size: 14px;
+  color: #ce0b0b !important;
+  cursor: pointer;
+}
+
+.delete-post:hover {
+  text-decoration: underline;
+}
 
 
 .Sports {

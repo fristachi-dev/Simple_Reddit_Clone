@@ -42,7 +42,6 @@ const Post = ({
       user: username,
       current: localStorage.getItem("user"),
     };
-    //console.log(user)
 
     const req = await axios
       .post("/users/upvote", user, {
@@ -61,7 +60,6 @@ const Post = ({
       user: username,
       current: localStorage.getItem("user"),
     };
-    //console.log(user)
 
     const req = await axios
       .post("/users/downvote", user, {
@@ -73,6 +71,33 @@ const Post = ({
         getdata();
       });
   };
+
+
+  const deletePost = async (e) => {
+    e.preventDefault();
+    const user = {
+      postid: postid,
+      user: username,
+      current: localStorage.getItem("user"),
+    };
+
+    try {
+      const req = await axios
+        .post("/users/deletepost", user, {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          getdata();
+          console.log(res.data.msg)
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
 
   return (
     <div className="w-100">
@@ -90,6 +115,8 @@ const Post = ({
               }
             >
               <Row className="d-flex align-items-center justify-content-center">
+                
+                {/* upvote & downvote */}
                 <Col xs={2} md={1} lg={1}>
                   <Row>
                     <Col className="d-flex justify-content-center">
@@ -116,6 +143,7 @@ const Post = ({
                   </Row>
                 </Col>
 
+                {/* post main */}
                 <Col className="pl-0">
                   <Link
                     className="text-decoration-none"
@@ -124,7 +152,10 @@ const Post = ({
                       state: { id: postid },
                     }}
                   >
+
+                    {/* post header */}
                     <Row>
+                      {/* post subject tag */}
                       <Col
                         xs={4}
                         md={3}
@@ -141,6 +172,8 @@ const Post = ({
                           {postSubject}
                         </p>
                       </Col>
+
+                      {/* post user & date */}
                       <Col className="p-0 pl-3">
                         <p className="mt-3 mb-0">
                           {`Posted by ${username}`}
@@ -153,16 +186,32 @@ const Post = ({
                         </p>
                       </Col>
                     </Row>
+
+                    {/* post title & body */}
                     <h5 className="my-2" style={{ fontSize: "19px" }}>
                       {`${postTitle.substring(0, 200)}`}
                     </h5>
                     <p className="my-2 text-dark" style={{ fontSize: "15px" }}>
                       {`${post.substring(0, 300)}...`}
                     </p>
-                    <p>{comments.length} Comments</p>
+                    <div style={{ paddingBottom: "16px" }}>
+                      <span>{comments.length} Comments</span>
+                      {localStorage.getItem("user") == username ? (
+                        <span
+                          className="delete-post float-right"
+                          onClick={deletePost}
+                        >
+                          Delete
+                        </span>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
                   </Link>
                 </Col>
+
               </Row>
+
             </Col>
           </Row>
         </Container>
@@ -174,36 +223,3 @@ const Post = ({
 };
 
 export default Post;
-
-{
-  /* <Container>
-<Row className="justify-content-md-center my-4">
-    <Col xs={8} lg={6} className="border border-primary rounded px-4 bg-white">
-        <h4 className="mt-3 mb-0">{username}</h4>
-        <span style={{
-            fontSize: "14px",
-            color: "#777"
-        }}>{getDate(date)}</span>
-        <br />
-        <p className="my-1" style={{
-            fontSize: "18px",
-        }}>{post}</p>
-        <span>{likes}</span>
-        <Button onClick={() => likePost(postid)}>Like</Button>
-        {comments.map((item) => (
-            <Comment
-                key={'com' + item._id}
-                username={item.username}
-                date={item.date}
-                comment={item.comment}
-            />
-        ))}
-        <AddComment
-            key={'addcom' + postid}
-            username={username}
-            post={post}
-        />
-    </Col>
-</Row>
-</Container> */
-}
