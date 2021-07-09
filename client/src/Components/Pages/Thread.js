@@ -37,7 +37,6 @@ const Thread = ({ check, theme, darkmode }) => {
       user: thread.username,
       current: localStorage.getItem("user"),
     };
-    console.log(user);
 
     try {
       const req = await axios
@@ -47,6 +46,7 @@ const Thread = ({ check, theme, darkmode }) => {
           },
         })
         .then((res) => {
+          // console.log(res.data.msg)
           getData();
         });
     } catch (err) {
@@ -156,30 +156,42 @@ const Thread = ({ check, theme, darkmode }) => {
               
               <Row className="d-flex align-items-center justify-content-center">
 
+                {/* upvote & downvote */}
                 <Col xs={2} md={1} lg={1}>
+
+                  {/* upvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowUp
-                        className="arrow-up"
+                        className={"arrow-up " +
+                          (thread.upVotes.includes(localStorage.getItem("user")) ? "arrow-up-active" : "")
+                        }
                         size={24}
                         onClick={() => likePost(thread.id)}
                       />
                     </Col>
                   </Row>
+
+                  {/* vote count */}
                   <Row>
                     <Col className="d-flex justify-content-center pt-2 text-center">
                       <h5>{thread.votes}</h5>
                     </Col>
                   </Row>
+
+                  {/* downvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowDown
-                        className="arrow-down"
+                        className={"arrow-down " + 
+                          (thread.downVotes.includes(localStorage.getItem("user")) ? "arrow-down-active" : "")
+                        }
                         size={24}
                         onClick={() => downVote(thread.id)}
                       />
                     </Col>
                   </Row>
+
                 </Col>
        
                 <Col className="pl-0">

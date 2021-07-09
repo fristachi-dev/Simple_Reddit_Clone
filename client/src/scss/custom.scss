@@ -43,6 +43,7 @@ $link-color: black;
   font-size: 15px;
 }
 
+// ---------- Subject Pill ---------- \\
 .text-pill {
   font-size: 14px;
   width: fit-content !important;
@@ -51,6 +52,27 @@ $link-color: black;
 .fit {
   width: fit-content !important;
   padding: 0 6px !important;
+}
+.Sports {
+  background-color: #e72b2b !important;
+}
+.Technology {
+  background-color: #1f1fbd !important;
+}
+.WorldNews {
+  background-color: #44c233 !important;
+}
+.VideoGames {
+  background-color: #b53bce !important;
+}
+.General {
+  background-color: #1484d6 !important;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+.tab-border {
+  border-radius: 0px !important;
 }
 
 // ---------- Navbar ---------- \\
@@ -93,20 +115,29 @@ $link-color: black;
 }
 
 .arrow-up {
-  color: #8f8f8f !important;
+  color: #b3b3b3;
 }
 
 .arrow-up:hover {
-  color: #1484d6 !important;
+  color: #1484d6;
   cursor: pointer;
 }
 
 .arrow-down {
-  color: #8f8f8f !important;
+  color: #b3b3b3;
 }
 
 .arrow-down:hover {
-  color: #df8611 !important;
+  color: #df8611;
+  cursor: pointer;
+}
+
+.arrow-up-active {
+  color: #1484d6;
+  cursor: pointer;
+}
+.arrow-down-active {
+  color: #df8611;
   cursor: pointer;
 }
 
@@ -223,27 +254,7 @@ $link-color: black;
 
 
 
-.Sports {
-  background-color: #e72b2b !important;
-}
-.Technology {
-  background-color: #1f1fbd !important;
-}
-.WorldNews {
-  background-color: #44c233 !important;
-}
-.VideoGames {
-  background-color: #b53bce !important;
-}
-.General {
-  background-color: #1484d6 !important;
-}
-.pointer:hover {
-  cursor: pointer;
-}
-.tab-border {
-  border-radius: 0px !important;
-}
+
 
 @import "~bootstrap/scss/bootstrap.scss";
 

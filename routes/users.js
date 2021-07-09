@@ -203,12 +203,17 @@ router.route("/n").get(auth, async (req, res) => {
 });
 
 //upvote post
+// Req.Body --> {users, current, postid}
 router.route("/upvote").post(auth, async (req, res) => {
   try {
+    //get post's user
     let user = await User.findOne({ username: req.body.user });
+    //find post
     const i = await user.posts.findIndex((x) => x._id == req.body.postid);
 
-    if (user.posts[i].downVotes.includes(req.body.current)) {
+    //neither upvoted or downvoted by current user
+    if (!user.posts[i].downVotes.includes(req.body.current) && !user.posts[i].upVotes.includes(req.body.current)) {
+      //+1 vote
       await User.updateOne(
         {
           "posts._id": req.body.postid,
@@ -219,41 +224,14 @@ router.route("/upvote").post(auth, async (req, res) => {
           },
         }
       );
-
-      const newuser = user.posts[i].downVotes.filter(function (val, i, arr) {
-        return val != req.body.current;
-      });
-      user.posts[i].downVotes = newuser;
-      await user.save();
-    } else if (!user.posts[i].upVotes.includes(req.body.current)) {
-      await User.updateOne(
-        {
-          "posts._id": req.body.postid,
-        },
-        {
-          $inc: {
-            "posts.$.votes": 1,
-          },
-        }
-      );
+      //add user to upvote list and save
       await user.posts[i].upVotes.push(req.body.current);
       await user.save();
     }
 
-    const update = await User.find();
-    res.json(update);
-  } catch (err) {
-    res.json({ message: "error" });
-  }
-});
-
-//downvote post
-router.route("/downvote").post(auth, async (req, res) => {
-  try {
-    let user = await User.findOne({ username: req.body.user });
-    const i = await user.posts.findIndex((x) => x._id == req.body.postid);
-
-    if (user.posts[i].upVotes.includes(req.body.current)) {
+    //already upvoted by current user
+    else if (user.posts[i].upVotes.includes(req.body.current)) {
+      // -1 vote
       await User.updateOne(
         {
           "posts._id": req.body.postid,
@@ -264,13 +242,56 @@ router.route("/downvote").post(auth, async (req, res) => {
           },
         }
       );
-
+      //remove user from upvote list and save
       const newuser = user.posts[i].upVotes.filter(function (val, i, arr) {
         return val != req.body.current;
       });
       user.posts[i].upVotes = newuser;
       await user.save();
-    } else if (!user.posts[i].downVotes.includes(req.body.current)) {
+    }
+
+    //already downvoted by current user
+    else if (user.posts[i].downVotes.includes(req.body.current)) {
+      // +2 vote
+      await User.updateOne(
+        {
+          "posts._id": req.body.postid,
+        },
+        {
+          $inc: {
+            "posts.$.votes": 2,
+          },
+        }
+      );
+      //add user to upvote list, remove from downvote list, and save
+      await user.posts[i].upVotes.push(req.body.current);
+      const newuser = user.posts[i].downVotes.filter(function (val, i, arr) {
+        return val != req.body.current;
+      });
+      user.posts[i].downVotes = newuser;
+      await user.save();
+    }
+    
+    const update = await User.find();
+    res.json(update);
+  } 
+  catch (err) {
+    res.json({ msg: "error" });
+  }
+});
+
+//downvote post
+// Req.Body --> {users, current, postid}
+router.route("/downvote").post(auth, async (req, res) => {
+  try {
+    //get post's user
+    let user = await User.findOne({ username: req.body.user });
+    //find post
+    const i = await user.posts.findIndex((x) => x._id == req.body.postid);
+
+    //neither upvoted or downvoted by current user
+    if (!user.posts[i].downVotes.includes(req.body.current) && !user.posts[i].upVotes.includes(req.body.current)) {
+      //-1 vote
       await User.updateOne(
         {
           "posts._id": req.body.postid,
@@ -281,15 +302,59 @@ router.route("/downvote").post(auth, async (req, res) => {
           },
         }
       );
-
+      //add user to downvote list and save
       await user.posts[i].downVotes.push(req.body.current);
       await user.save();
     }
 
+    //already downvoted by current user
+    else if (user.posts[i].downVotes.includes(req.body.current)) {
+      // +1 vote
+      await User.updateOne(
+        {
+          "posts._id": req.body.postid,
+        },
+        {
+          $inc: {
+            "posts.$.votes": +1,
+          },
+        }
+      );
+      //remove user from downvote list and save
+      const newuser = user.posts[i].downVotes.filter(function (val, i, arr) {
+        return val != req.body.current;
+      });
+      user.posts[i].downVotes = newuser;
+      await user.save();
+    }
+
+    //already upvoted by current user
+    else if (user.posts[i].upVotes.includes(req.body.current)) {
+      // -2 vote
+      await User.updateOne(
+        {
+          "posts._id": req.body.postid,
+        },
+        {
+          $inc: {
+            "posts.$.votes": -2,
+          },
+        }
+      );
+      //add user to downvote list, remove from upvote list, and save
+      await user.posts[i].downVotes.push(req.body.current);
+      const newuser = user.posts[i].upVotes.filter(function (val, i, arr) {
+        return val != req.body.current;
+      });
+      user.posts[i].upVotes = newuser;
+      await user.save();
+    }
+    
     const update = await User.find();
     res.json(update);
-  } catch (err) {
-    res.json({ message: "error" });
+  } 
+  catch (err) {
+    res.json({ msg: "error" });
   }
 });
 
@@ -337,3 +402,108 @@ router.route("/deletepost").post(auth, async (req, res) => {
 
 module.exports = router;
 
+
+
+
+
+
+
+
+
+
+// //upvote post
+// router.route("/upvote").post(auth, async (req, res) => {
+//   try {
+//     //get user
+//     let user = await User.findOne({ username: req.body.user });
+//     //find post
+//     const i = await user.posts.findIndex((x) => x._id == req.body.postid);
+
+
+//     if (user.posts[i].downVotes.includes(req.body.current)) {
+
+//       await User.updateOne(
+//         {
+//           "posts._id": req.body.postid,
+//         },
+//         {
+//           $inc: {
+//             "posts.$.votes": 1,
+//           },
+//         }
+//       );
+//       const newuser = user.posts[i].downVotes.filter(function (val, i, arr) {
+//         return val != req.body.current;
+//       });
+//       user.posts[i].downVotes = newuser;
+//       await user.save();
+
+//     } else if (!user.posts[i].upVotes.includes(req.body.current)) {
+
+//       await User.updateOne(
+//         {
+//           "posts._id": req.body.postid,
+//         },
+//         {
+//           $inc: {
+//             "posts.$.votes": 1,
+//           },
+//         }
+//       );
+//       await user.posts[i].upVotes.push(req.body.current);
+//       await user.save();
+      
+//     }
+
+//     const update = await User.find();
+//     res.json(update);
+//   } catch (err) {
+//     res.json({ message: "error" });
+//   }
+// });
+
+// //downvote post
+// router.route("/downvote").post(auth, async (req, res) => {
+//   try {
+//     let user = await User.findOne({ username: req.body.user });
+//     const i = await user.posts.findIndex((x) => x._id == req.body.postid);
+
+//     if (user.posts[i].upVotes.includes(req.body.current)) {
+//       await User.updateOne(
+//         {
+//           "posts._id": req.body.postid,
+//         },
+//         {
+//           $inc: {
+//             "posts.$.votes": -1,
+//           },
+//         }
+//       );
+
+//       const newuser = user.posts[i].upVotes.filter(function (val, i, arr) {
+//         return val != req.body.current;
+//       });
+//       user.posts[i].upVotes = newuser;
+//       await user.save();
+//     } else if (!user.posts[i].downVotes.includes(req.body.current)) {
+//       await User.updateOne(
+//         {
+//           "posts._id": req.body.postid,
+//         },
+//         {
+//           $inc: {
+//             "posts.$.votes": -1,
+//           },
+//         }
+//       );
+
+//       await user.posts[i].downVotes.push(req.body.current);
+//       await user.save();
+//     }
+
+//     const update = await User.find();
+//     res.json(update);
+//   } catch (err) {
+//     res.json({ message: "error" });
+//   }
+// });

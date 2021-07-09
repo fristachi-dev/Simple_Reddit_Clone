@@ -20,6 +20,8 @@ const Post = ({
   visible,
   theme,
   darkmode,
+  upVotes,
+  downVotes
 }) => {
   const getDate = (newdate) => {
     let date = new Date(newdate);
@@ -121,12 +123,14 @@ const Post = ({
                 
                 {/* upvote & downvote */}
                 <Col xs={2} md={1} lg={1} >
-                  
+              
                   {/* upvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowUp
-                        className="arrow arrow-up"
+                        className={"arrow-up " +
+                          (upVotes.includes(localStorage.getItem("user")) ? "arrow-up-active" : "")
+                        }
                         size={24}
                         onClick={() => likePost(postid)}
                       />
@@ -144,7 +148,9 @@ const Post = ({
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowDown
-                        className="arrow arrow-down"
+                        className={"arrow-down " + 
+                          (downVotes.includes(localStorage.getItem("user")) ? "arrow-down-active" : "")
+                        }
                         size={24}
                         onClick={() => downVote(postid)}
                       />

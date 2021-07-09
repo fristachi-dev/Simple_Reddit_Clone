@@ -75,6 +75,8 @@ const PostFeed = ({ check, theme, darkmode }) => {
                   date={user.date}
                   comments={user.comments}
                   likes={user.votes}
+                  upVotes={user.upVotes}
+                  downVotes={user.downVotes}
                   getdata={getData}
                   theme={theme}
                   darkmode={darkmode}
