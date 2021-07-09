@@ -1,13 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
+$primary: #1484d6;
+$secondary: #eeeeee;
+$info: #cccccc;
+$light: #f0f0f0;
+$dark: #6b6b6b;
+$warning: #353535;
+
 $theme-colors: (
-  "primary": #1484d6,
-  "secondary": #dae0e6,
-  "info": #cccccc,
-  "light": #f0f0f0,
-  "dark": #6b6b6b,
-  "warning": #353535,
+  "primary": $primary,
+  "secondary": $secondary,
+  "info": $info,
+  "light": $light,
+  "dark": $dark,
+  "warning": $warning,
 );
+
+// $theme-colors: (
+//   "primary": #1484d6,
+//   "secondary": #dae0e6,
+//   "info": #cccccc,
+//   "light": #f0f0f0,
+//   "dark": #6b6b6b,
+//   "warning": #353535,
+// );
 
 $container-max-widths: (
   sm: 540px,
@@ -18,6 +34,83 @@ $container-max-widths: (
 
 $link-color: black;
 
+// ---------- Font Size ---------- \\
+.text-head {
+  font-size: 18px;
+}
+
+.text-body {
+  font-size: 15px;
+}
+
+.text-pill {
+  font-size: 14px;
+  width: fit-content !important;
+  padding: 0 6px !important;
+}
+.fit {
+  width: fit-content !important;
+  padding: 0 6px !important;
+}
+
+// ---------- Navbar ---------- \\
+.nav-subject-drop a {
+  color: black !important;
+}
+
+.nav-subject-drop:hover {
+  border: 1px solid $info;
+  border-radius: 6px;
+  margin: -1px -1px;
+}
+
+// ---------- Post ---------- \\
+.post-footer {
+
+  .btn-comments {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 38px;
+  }
+  .drop-options {
+    font-size: 13px;
+    font-weight: 600;
+    height: 38px;
+    padding-top: 4px;
+  }
+
+  p:hover, .dropdown-toggle:hover {
+    background-color: #eeeeee;
+  }
+
+  .btn {
+    &:focus,
+    &.focus {
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.arrow-up {
+  color: #8f8f8f !important;
+}
+
+.arrow-up:hover {
+  color: #1484d6 !important;
+  cursor: pointer;
+}
+
+.arrow-down {
+  color: #8f8f8f !important;
+}
+
+.arrow-down:hover {
+  color: #df8611 !important;
+  cursor: pointer;
+}
+
+// ---------- Thread ---------- \\
 .delete-comment {
   font-size: 14px;
   color: #ce0b0b !important;
@@ -28,6 +121,7 @@ $link-color: black;
   text-decoration: underline;
 }
 
+// ---------- Dark Theme ---------- \\
 .theme-dark {
   background: #030303 !important;
 
@@ -66,8 +160,17 @@ $link-color: black;
     border-color: #353535 !important;
   }
 
-  .nav-item {
+  .nav-item, .dropdown-toggle {
     color: white !important;
+  }
+
+  .nav-subject-drop {
+    .dropdown-item:hover{
+      background-color: $warning !important;
+    }
+    .dropdown-menu {
+      border-color: $warning;
+    }
   }
 
   textarea,
@@ -79,29 +182,25 @@ $link-color: black;
     color: white !important;
     background: #1a1a1b !important;
   }
+
+  .post-footer {
+    p:hover, .dropdown-toggle:hover {
+      background-color: $warning !important;
+    }
+    .dropdown-item:hover, .dropdown-item:focus {
+      background-color: $warning !important;
+    }
+    .dropdown-menu {
+      border-color: $warning;
+    }
+  }
 }
 
 * {
   font-family: "Rubik", sans-serif;
 }
 
-.arrow-up {
-  color: #8f8f8f !important;
-}
 
-.arrow-up:hover {
-  color: #1484d6 !important;
-  cursor: pointer;
-}
-
-.arrow-down {
-  color: #8f8f8f !important;
-}
-
-.arrow-down:hover {
-  color: #df8611 !important;
-  cursor: pointer;
-}
 
 .border-highlight:hover {
   border: 1px solid #222 !important;
@@ -118,30 +217,10 @@ $link-color: black;
   background-color: white !important;
 }
 
-.nav-highlight a {
-  color: black !important;
-}
 
-.nav-highlight:hover {
-  border: 1px solid #e4e4e4 !important;
-  border-radius: 6px;
-  margin: -1px -1px;
-}
 
-.fit {
-  width: fit-content !important;
-  padding: 0 6px !important;
-}
 
-.delete-post {
-  font-size: 14px;
-  color: #ce0b0b !important;
-  cursor: pointer;
-}
 
-.delete-post:hover {
-  text-decoration: underline;
-}
 
 
 .Sports {
@@ -167,3 +246,7 @@ $link-color: black;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+
+
+// ---------- ---------- \\
