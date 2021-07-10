@@ -34,6 +34,7 @@ $container-max-widths: (
 
 $link-color: black;
 
+
 // ---------- Font Size ---------- \\
 .text-head {
   font-size: 18px;
@@ -73,6 +74,15 @@ $link-color: black;
 }
 .tab-border {
   border-radius: 0px !important;
+}
+
+.back-arrow {
+  color: $dark;
+  cursor: pointer;
+  transform: rotate(180deg) !important;
+}
+.back-arrow:hover {
+  color: black;
 }
 
 // ---------- Navbar ---------- \\
@@ -172,6 +182,10 @@ $link-color: black;
 .theme-dark-grey {
   background: #1a1a1b !important;
 
+  .back-arrow:hover {
+    color: rgb(255, 255, 255);
+  }
+
   p,
   a,
   .nav-highlight a {
@@ -247,7 +261,6 @@ $link-color: black;
   border: 1px solid #1484d6 !important;
   background-color: white !important;
 }
-
 
 
 

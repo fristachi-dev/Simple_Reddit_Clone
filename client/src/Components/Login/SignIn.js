@@ -50,7 +50,7 @@ const SignIn = ({ check }) => {
       <Row className="d-flex justify-content-center w-100 m-0">
         <Col className="p-0" style={{ maxWidth: "600px" }}>
           <Form onSubmit={addUser} className="bg-light px-3 py-5 px-sm-5">
-            <h2 className="mb-4" >Sign In</h2>
+            <h2 className="mb-4 text-center">Sign In</h2>
 
             <Form.Label>Username</Form.Label>
             <InputGroup className="mb-4">
@@ -91,7 +91,7 @@ const SignIn = ({ check }) => {
             <p>{errorMsg}</p>
 
             <Button className="mt-1 mb-3 rounded-0" type="submit" block>
-              Sign In
+              Log In
             </Button>
 
             <Link to="/SignUp">Don't have an Account? Sign Up Here!</Link>

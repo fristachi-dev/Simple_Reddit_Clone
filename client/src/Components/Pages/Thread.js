@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -7,6 +8,7 @@ import AddComment from "../Post/AddComment";
 import Navigation from "../Nav/Nav";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
+import { BsArrowReturnRight } from "react-icons/bs"
 import "../../scss/custom.scss";
 
 const Thread = ({ check, theme, darkmode }) => {
@@ -141,7 +143,7 @@ const Thread = ({ check, theme, darkmode }) => {
         theme={theme}
         darkmode={darkmode}
       />
-      
+
       <Row className="justify-content-md-center mt-5 pt-5">
         <Col
           className={
@@ -149,22 +151,28 @@ const Thread = ({ check, theme, darkmode }) => {
             (darkmode ? "theme-dark-grey border-warning" : "bg-white")
           }
         >
-
           {loaded ? (
-
             <div>
-              
-              <Row className="d-flex align-items-center justify-content-center">
-
+              <Row className="d-flex justify-content-center">
                 {/* upvote & downvote */}
-                <Col xs={2} md={1} lg={1}>
+                <Col xs={2} md={1} lg={1} className="">
+                  
+                  {/* back button */}
+                  <Row className="mb-5 mt-3" as={Link} to="/">
+                    <Col>
+                      <BsArrowReturnRight size={36} className="back-arrow" />
+                    </Col>
+                  </Row>
 
                   {/* upvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowUp
-                        className={"arrow-up " +
-                          (thread.upVotes.includes(localStorage.getItem("user")) ? "arrow-up-active" : "")
+                        className={
+                          "arrow-up " +
+                          (thread.upVotes.includes(localStorage.getItem("user"))
+                            ? "arrow-up-active"
+                            : "")
                         }
                         size={24}
                         onClick={() => likePost(thread.id)}
@@ -183,17 +191,21 @@ const Thread = ({ check, theme, darkmode }) => {
                   <Row>
                     <Col className="d-flex justify-content-center">
                       <ImArrowDown
-                        className={"arrow-down " + 
-                          (thread.downVotes.includes(localStorage.getItem("user")) ? "arrow-down-active" : "")
+                        className={
+                          "arrow-down " +
+                          (thread.downVotes.includes(
+                            localStorage.getItem("user")
+                          )
+                            ? "arrow-down-active"
+                            : "")
                         }
                         size={24}
                         onClick={() => downVote(thread.id)}
                       />
                     </Col>
                   </Row>
-
                 </Col>
-       
+
                 <Col className="pl-0">
                   <Row className="mt-3">
                     <Col
@@ -240,9 +252,8 @@ const Thread = ({ check, theme, darkmode }) => {
                     </Col>
                   </Row>
                 </Col>
-              
               </Row>
-              
+
               <Row>
                 <Col>
                   <AddComment
@@ -254,9 +265,9 @@ const Thread = ({ check, theme, darkmode }) => {
                   />
                 </Col>
               </Row>
-              
+
               <hr></hr>
-              
+
               <Row>
                 <Col>
                   {thread.comments.map((item) => (
@@ -273,16 +284,12 @@ const Thread = ({ check, theme, darkmode }) => {
                   ))}
                 </Col>
               </Row>
-            
             </div>
-
           ) : (
             <Spinner animation="border" />
           )}
-
         </Col>
       </Row>
-    
     </Container>
   );
 };

@@ -19,13 +19,13 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
     >
       <Container className="p-0 align-items-start">
         <Navbar.Brand
-          className="d-none d-sm-block p-0"
+          className="p-0"
           as={Link}
           to="/"
           style={{ fontWeight: "400", fontSize: "26px" }}
         >
           <img src={logo} height={30} className="mr-2"/>
-          Threadit
+          <span className="d-none d-sm-inline" style={{ fontWeight: "400", fontSize: "26px" }}>Threadit</span>
         </Navbar.Brand>
 
         {drop ? (
@@ -85,11 +85,11 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
         )}
 
         <Nav className="flex-row">
-          <Nav.Item>
+          {/* <Nav.Item>
             <Nav.Link className="p-0 mr-3" as={Link} to="/">
               <CgFeed size={38} />
             </Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
 
           <Nav style={{ maxWidth: "200px" }}>
             <Nav.Item className="mr-2 d-none d-sm-block">
@@ -107,6 +107,7 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
               aria-controls="basic-navbar-nav"
               className={darkmode ? "theme-dark-grey" : "bg-white"}
             />
+            
             <Navbar.Collapse
               className={darkmode ? "theme-dark-grey" : "bg-white"}
               id="basic-navbar-nav"
@@ -121,9 +122,6 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
                 Settings
               </Nav.Item>
 
-              <Nav.Item className="d-block d-sm-none">
-                <SignOut check={check} />
-              </Nav.Item>
               <Nav.Item className="mr-2 d-block d-sm-none">
                 <BootstrapSwitchButton
                   onChange={theme}
@@ -134,10 +132,15 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
                   height={30}
                 />
               </Nav.Item>
+
+              <Nav.Item className="d-block d-sm-none">
+                <SignOut check={check} />
+              </Nav.Item>
+
             </Navbar.Collapse>
 
             <NavDropdown
-              className="nav-highlight d-none d-sm-block"
+              className="nav-highlight d-none d-sm-block text-dark"
               title={localStorage.getItem("user")}
               id="nav-dropdown"
             >
