@@ -2,9 +2,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ImArrowUp, ImArrowDown } from "react-icons/im";
-import { BsThreeDots } from "react-icons/bs"
-import { BiMessage } from "react-icons/bi"
+import { BiMessage, BiUpvote, BiDownvote } from "react-icons/bi"
 import "../../scss/custom.scss";
 
 const Post = ({
@@ -23,20 +21,24 @@ const Post = ({
   upVotes,
   downVotes
 }) => {
+
   const getDate = (newdate) => {
     let date = new Date(newdate);
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let dt = date.getDate();
+    let temp;
+
+    const monthAbb = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dev"];
 
     if (dt < 10) {
       dt = "0" + dt;
     }
-    if (month < 10) {
-      month = "0" + month;
-    }
 
-    let res = `${dt}-${month}-${year}`;
+    temp = year.toString();
+    year = temp.slice(-2)
+
+    let res = `${monthAbb[month - 1]}. ${dt} '${year}`;
     return res;
   };
 
@@ -76,7 +78,6 @@ const Post = ({
       });
   };
 
-
   const deletePost = async (e) => {
     e.preventDefault();
     const user = {
@@ -101,9 +102,6 @@ const Post = ({
     }
   };
 
-
-
-
   return (
     <div className="w-100">
       {visible ? (
@@ -127,11 +125,11 @@ const Post = ({
                   {/* upvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
-                      <ImArrowUp
+                      <BiUpvote
                         className={"arrow-up " +
                           (upVotes.includes(localStorage.getItem("user")) ? "arrow-up-active" : "")
                         }
-                        size={24}
+                        size={29}
                         onClick={() => likePost(postid)}
                       />
                     </Col>
@@ -147,11 +145,11 @@ const Post = ({
                   {/* downvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
-                      <ImArrowDown
+                      <BiDownvote
                         className={"arrow-down " + 
                           (downVotes.includes(localStorage.getItem("user")) ? "arrow-down-active" : "")
                         }
-                        size={24}
+                        size={29}
                         onClick={() => downVote(postid)}
                       />
                     </Col>
@@ -179,9 +177,9 @@ const Post = ({
                           {/* post subject tag */}
                           <Col
                             xs={4}
-                            md={3}
-                            xl={2}
-                            className="d-flex align-items-center justify-content-center pl-4 pr-0 pt-2"
+                            sm={3}
+                            md={2}
+                            className="d-flex align-items-center justify-content-center pl-0 pr-0 pt-2"
                           >
                             <p
                               className={`text-pill mb-0 border rounded-pill text-white text-center ${postSubject.replace(
@@ -195,12 +193,11 @@ const Post = ({
                           </Col>
 
                           {/* post user & date */}
-                          <Col className="p-0 pl-3">
-                            <p className="mt-3 mb-0">
+                          <Col className="p-0 pl-2">
+                            <p className="mt-3 mb-0 post-header-text">
                               {`Posted by ${username}`}
                               <span
-                                className="ml-3 text-dark"
-                                style={{ fontSize: "14px" }}
+                                className="ml-3 post-header-text"
                               >
                                 {getDate(date)}
                               </span>

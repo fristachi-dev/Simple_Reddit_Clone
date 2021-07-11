@@ -16,18 +16,9 @@ $theme-colors: (
   "warning": $warning,
 );
 
-// $theme-colors: (
-//   "primary": #1484d6,
-//   "secondary": #dae0e6,
-//   "info": #cccccc,
-//   "light": #f0f0f0,
-//   "dark": #6b6b6b,
-//   "warning": #353535,
-// );
-
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
+  sm: 97%,
+  md: 95%,
   lg: 850px,
   xl: 900px,
 );
@@ -97,6 +88,11 @@ $link-color: black;
 }
 
 // ---------- Post ---------- \\
+.post-header-text {
+  color: $dark;
+  font-size: 14px;
+}
+
 .post-footer {
 
   .btn-comments {
@@ -112,7 +108,7 @@ $link-color: black;
   }
 
   p:hover, .dropdown-toggle:hover {
-    background-color: #eeeeee;
+    background-color: $secondary;
   }
 
   .btn {
@@ -150,6 +146,14 @@ $link-color: black;
   color: #df8611;
   cursor: pointer;
 }
+.arrow-up-active:hover {
+  color: rgba(20, 133, 214, 0.8);
+  cursor: pointer;
+}
+.arrow-down-active:hover {
+  color: rgba(223, 134, 17, 0.8);
+  cursor: pointer;
+}
 
 // ---------- Thread ---------- \\
 .delete-comment {
@@ -181,6 +185,16 @@ $link-color: black;
 
 .theme-dark-grey {
   background: #1a1a1b !important;
+
+  .dropdown-menu {
+    border: 1px solid $warning;
+
+    .dropdown-item:hover {
+      background-color: $warning !important;
+    }
+  }
+
+
 
   .back-arrow:hover {
     color: rgb(255, 255, 255);

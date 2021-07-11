@@ -51,6 +51,7 @@ const Routes = () => {
     localStorage.setItem("sub", "Home");
     getData();
   }, []);
+  
 
   return (
     <div className={darkmode ? "theme-dark" : "bg-secondary"}>

@@ -183,7 +183,9 @@ const UpdateUser = ({ check, theme, darkmode }) => {
               </Button>
             </Form>
           ) : (
-            <Spinner animation="border" />
+            <div className="d-flex justify-content-center">
+              <Spinner className="my-5" animation="border" />
+            </div>
           )}
         </Col>
       </Row>

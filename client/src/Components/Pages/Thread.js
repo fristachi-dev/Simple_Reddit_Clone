@@ -7,7 +7,7 @@ import Comment from "../Post/Comment";
 import AddComment from "../Post/AddComment";
 import Navigation from "../Nav/Nav";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import { ImArrowUp, ImArrowDown } from "react-icons/im";
+import { BiUpvote, BiDownvote } from "react-icons/bi"
 import { BsArrowReturnRight } from "react-icons/bs"
 import "../../scss/custom.scss";
 
@@ -21,15 +21,18 @@ const Thread = ({ check, theme, darkmode }) => {
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let dt = date.getDate();
+    let temp;
+
+    const monthAbb = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dev"];
 
     if (dt < 10) {
       dt = "0" + dt;
     }
-    if (month < 10) {
-      month = "0" + month;
-    }
 
-    let res = `${dt}-${month}-${year}`;
+    temp = year.toString();
+    year = temp.slice(-2)
+
+    let res = `${monthAbb[month - 1]}. ${dt} '${year}`;
     return res;
   };
 
@@ -132,6 +135,7 @@ const Thread = ({ check, theme, darkmode }) => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getData();
   }, []);
 
@@ -156,7 +160,6 @@ const Thread = ({ check, theme, darkmode }) => {
               <Row className="d-flex justify-content-center">
                 {/* upvote & downvote */}
                 <Col xs={2} md={1} lg={1} className="">
-                  
                   {/* back button */}
                   <Row className="mb-5 mt-3" as={Link} to="/">
                     <Col>
@@ -167,14 +170,14 @@ const Thread = ({ check, theme, darkmode }) => {
                   {/* upvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
-                      <ImArrowUp
+                      <BiUpvote
                         className={
                           "arrow-up " +
                           (thread.upVotes.includes(localStorage.getItem("user"))
                             ? "arrow-up-active"
                             : "")
                         }
-                        size={24}
+                        size={29}
                         onClick={() => likePost(thread.id)}
                       />
                     </Col>
@@ -190,7 +193,7 @@ const Thread = ({ check, theme, darkmode }) => {
                   {/* downvote */}
                   <Row>
                     <Col className="d-flex justify-content-center">
-                      <ImArrowDown
+                      <BiDownvote
                         className={
                           "arrow-down " +
                           (thread.downVotes.includes(
@@ -199,7 +202,7 @@ const Thread = ({ check, theme, darkmode }) => {
                             ? "arrow-down-active"
                             : "")
                         }
-                        size={24}
+                        size={29}
                         onClick={() => downVote(thread.id)}
                       />
                     </Col>
@@ -210,8 +213,8 @@ const Thread = ({ check, theme, darkmode }) => {
                   <Row className="mt-3">
                     <Col
                       xs={4}
-                      md={3}
-                      xl={2}
+                      sm={3}
+                      md={2}
                       className="d-flex align-items-center justify-content-center pl-4 pr-0 pt-2"
                     >
                       <p
@@ -224,17 +227,16 @@ const Thread = ({ check, theme, darkmode }) => {
                         {thread.postSubject}
                       </p>
                     </Col>
+
                     <Col className="p-0 pl-3">
-                      <p className="mt-3 mb-0">
+                      <p className="mt-3 mb-0 post-header-text">
                         {`Posted by ${thread.username}`}
-                        <span
-                          className="ml-3 text-dark"
-                          style={{ fontSize: "14px" }}
-                        >
+                        <span className="ml-3 post-header-text">
                           {getDate(thread.date)}
                         </span>
                       </p>
                     </Col>
+
                   </Row>
                   <Row>
                     <Col>
@@ -286,7 +288,9 @@ const Thread = ({ check, theme, darkmode }) => {
               </Row>
             </div>
           ) : (
-            <Spinner animation="border" />
+            <div className="d-flex justify-content-center">
+              <Spinner className="my-5" animation="border" />
+            </div>
           )}
         </Col>
       </Row>

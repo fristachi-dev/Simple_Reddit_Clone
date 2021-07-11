@@ -93,7 +93,9 @@ const PostFeed = ({ check, theme, darkmode }) => {
           </Col>
         </Row>
       ) : (
-        <Spinner animation="border" />
+        <div className="d-flex justify-content-center">
+          <Spinner className="mt-5" animation="border" />
+      </div>
       )}
     </Container>
   );

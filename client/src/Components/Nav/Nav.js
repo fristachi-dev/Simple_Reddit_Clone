@@ -15,7 +15,7 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
     <Navbar
       fixed="top"
       expand="sm"
-      className={darkmode ? "theme-dark-grey" : "bg-white"}
+      className={"border-bottom " + (darkmode ? "theme-dark-grey border-warning" : "bg-white border-info")}
     >
       <Container className="p-0 align-items-start">
         <Navbar.Brand
@@ -113,14 +113,14 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
               id="basic-navbar-nav"
               style={{ maxWidth: "200px" }}
             >
-              <Nav.Item
+              {/* <Nav.Item
                 className="d-block d-sm-none"
                 as={Link}
                 to="/UpdateUser"
                 style={{ lineHeight: "40px" }}
               >
                 Settings
-              </Nav.Item>
+              </Nav.Item> */}
 
               <Nav.Item className="mr-2 d-block d-sm-none">
                 <BootstrapSwitchButton
@@ -140,17 +140,17 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
             </Navbar.Collapse>
 
             <NavDropdown
-              className="nav-highlight d-none d-sm-block text-dark"
+              className="nav-highlight d-none d-sm-block text-dark "
               title={localStorage.getItem("user")}
               id="nav-dropdown"
             >
-              <NavDropdown.Item
+              {/* <NavDropdown.Item
                 as={Link}
                 to="/UpdateUser"
                 style={{ lineHeight: "40px" }}
               >
                 Settings
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
               <NavDropdown.Item eventKey="2.1">
                 <SignOut check={check} />
               </NavDropdown.Item>
