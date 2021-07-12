@@ -39,8 +39,9 @@ const AddComment = ({ username, post, getdata, darkmode }) => {
       <Row className="d-flex align-items-center justify-content-center">
         <Col xs={12} sm={11} md={10}>
           <Form onSubmit={newComment}>
-            <Form.Group>
-              <Form.Label>
+
+            <Form.Group className="mb-0">
+              <Form.Label className="mb-1 post-header-text">
                 {`Comment as ${localStorage.getItem("user")}`}
               </Form.Label>
               <Form.Control
@@ -51,13 +52,18 @@ const AddComment = ({ username, post, getdata, darkmode }) => {
                 as="textarea"
                 rows={3}
                 maxLength="3000"
-                className={darkmode ? "theme-dark-grey" : "bg-white"}
+                className={"comment-form " + (darkmode ? "theme-dark-grey" : "bg-white")}
                 value={comment}
               />
+    
             </Form.Group>
-            <Button type="submit" className="rounded-pill float-right">
-              Comment
-            </Button>
+
+            <div className="comment-btn-wrapper d-flex align-items-center flex-row-reverse">
+              <Button type="submit" className="rounded-pill float-right mr-2">
+                Comment
+              </Button>
+            </div>
+
           </Form>
         </Col>
       </Row>

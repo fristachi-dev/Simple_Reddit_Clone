@@ -50,7 +50,7 @@ const AddPost = ({ getdata, darkmode }) => {
           xs={12}
           lg={12}
           className={
-            "border border-info rounded pt-4 pb-3 " +
+            "border border-info rounded pt-4 pb-0 " +
             (darkmode ? "theme-dark-grey border-warning" : "bg-white")
           }
         >
@@ -59,7 +59,9 @@ const AddPost = ({ getdata, darkmode }) => {
             onFocus={() => setOpen(!open)}
             onBlur={() => setOpen(!open)}
           >
-            <Form.Group>
+
+            {/* post title */}
+            <Form.Group className="">
               <Row>
                 <Col xs={12}>
                   <Form.Control
@@ -75,27 +77,38 @@ const AddPost = ({ getdata, darkmode }) => {
                 </Col>
               </Row>
             </Form.Group>
-            <Collapse in={open}>
+            
+            {/* collapsible */}
+            <Collapse in={open} className="">
               <Form.Group>
-                <Form.Control
-                  type="text"
-                  name={post}
-                  onChange={updatePost}
-                  placeholder="Text Body..."
-                  as="textarea"
-                  rows={3}
-                  maxLength="3000"
-                  value={post}
-                />
-                <Row className="pt-3">
+
+                <Row>
                   <Col>
-                    <Form.Label>Post Topic</Form.Label>
+                    <Form.Control
+                    className="create-post-body"
+                    type="text"
+                    name={post}
+                    onChange={updatePost}
+                    placeholder="Text Body..."
+                    as="textarea"
+                    rows={3}
+                    maxLength="3000"
+                    value={post}
+                  />
                   </Col>
                 </Row>
-                <Row>
-                  <Col xs={6}>
+
+                <Row className="create-post-footer " 
+                  style={{margin: "0px 0px", minHeight: "40px"}}
+                >
+
+                  <Col className="py-1" style={{maxWidth: "fit-content"}}>
+                    <Form.Label className="m-0" style={{lineHeight:"31px"}}>Post Topic: </Form.Label>
+                  </Col>
+
+                  <Col className="pl-0 py-1">
                     <Form.Control
-                      style={{ maxWidth: "150px" }}
+                      className="create-post-dropdown pt-1"
                       as="select"
                       onChange={updatePostSubject}
                     >
@@ -106,14 +119,18 @@ const AddPost = ({ getdata, darkmode }) => {
                       <option value="Sports">Sports</option>
                     </Form.Control>
                   </Col>
-                  <Col className="pr-sm-5">
+
+                  <Col className="py-1">
                     <Button type="submit" className="rounded-pill float-right">
                       Create New Post
                     </Button>
                   </Col>
+
                 </Row>
+
               </Form.Group>
             </Collapse>
+          
           </Form>
         </Col>
       </Row>

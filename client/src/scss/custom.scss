@@ -26,22 +26,51 @@ $container-max-widths: (
 $link-color: black;
 
 
+
+// ---------- Create Post ---------- \\
+.create-post-dropdown {
+  max-width: 150px;
+  min-width: 150px;
+  height: 32px !important;
+}
+
+.create-post-body {
+  border-color: $secondary !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom: none !important;
+}
+
+.create-post-footer {
+  background-color: $secondary;
+  border-bottom-right-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+
+  button {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 4px 14px !important;
+    width: 144px;
+  }
+}
+
 // ---------- Font Size ---------- \\
 .text-head {
   font-size: 18px;
+  font-weight: 500;
 }
 
 .text-body {
   font-size: 15px;
 }
 
+* {
+  font-family: "Rubik", sans-serif;
+}
+
 // ---------- Subject Pill ---------- \\
 .text-pill {
   font-size: 14px;
-  width: fit-content !important;
-  padding: 0 6px !important;
-}
-.fit {
   width: fit-content !important;
   padding: 0 6px !important;
 }
@@ -65,15 +94,6 @@ $link-color: black;
 }
 .tab-border {
   border-radius: 0px !important;
-}
-
-.back-arrow {
-  color: $dark;
-  cursor: pointer;
-  transform: rotate(180deg) !important;
-}
-.back-arrow:hover {
-  color: black;
 }
 
 // ---------- Navbar ---------- \\
@@ -162,9 +182,53 @@ $link-color: black;
   cursor: pointer;
 }
 
+.back-arrow {
+  color: #919191;
+  cursor: pointer;
+  transform: rotate(180deg) !important;
+}
+.back-arrow:hover {
+  color: black;
+}
+
 .delete-comment:hover {
   text-decoration: underline;
 }
+
+// ---------- Comment ---------- \\
+.comment-form {
+  border-color: $secondary !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom: none !important;
+}
+
+.comment-head {
+  background-color: $secondary;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.comment-body {
+  border: 1px solid $secondary;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.comment-btn-wrapper {
+  height: 38px;
+  width: 100%;
+  background-color: $secondary;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+
+  button {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 16px;
+  }
+}
+
+
 
 // ---------- Dark Theme ---------- \\
 .theme-dark {
@@ -186,18 +250,14 @@ $link-color: black;
 .theme-dark-grey {
   background: #1a1a1b !important;
 
-  .dropdown-menu {
-    border: 1px solid $warning;
-
-    .dropdown-item:hover {
-      background-color: $warning !important;
-    }
-  }
-
-
-
-  .back-arrow:hover {
-    color: rgb(255, 255, 255);
+  textarea,
+  input,
+  select,
+  .dropdown-item,
+  .dropdown-menu,
+  label {
+    color: white !important;
+    background: #1a1a1b !important;
   }
 
   p,
@@ -219,10 +279,45 @@ $link-color: black;
     border-color: #353535 !important;
   }
 
+  // comments
+  .comment-form {
+    border-color: $warning !important;
+  }
+  .comment-head {
+    background-color: $warning;
+  }
+  .comment-body {
+    border-color: $warning;
+  }
+
+  //dropdowns
+  .dropdown-menu {
+    border: 1px solid $warning;
+    .dropdown-item:hover {
+      background-color: $warning !important;
+    }
+  }
+
+  //create post
+  .create-post-body {
+    border-color: $warning !important;
+  }
+  .create-post-footer {
+    background-color: $warning;
+    label {
+      background-color: $warning !important;
+    }
+  }
+
+  //create comment
+  .comment-btn-wrapper {
+    background-color: $warning;
+  }
+
+  //nav
   .nav-item, .dropdown-toggle {
     color: white !important;
   }
-
   .nav-subject-drop {
     .dropdown-item:hover{
       background-color: $warning !important;
@@ -232,16 +327,13 @@ $link-color: black;
     }
   }
 
-  textarea,
-  input,
-  select,
-  .dropdown-item,
-  .dropdown-menu,
-  label {
-    color: white !important;
-    background: #1a1a1b !important;
+  //post
+  .post-header-text {
+    color: #bbbcbd !important;
   }
-
+  .back-arrow:hover {
+    color: rgb(255, 255, 255);
+  }
   .post-footer {
     p:hover, .dropdown-toggle:hover {
       background-color: $warning !important;
@@ -255,9 +347,7 @@ $link-color: black;
   }
 }
 
-* {
-  font-family: "Rubik", sans-serif;
-}
+
 
 
 

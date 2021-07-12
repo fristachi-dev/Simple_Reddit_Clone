@@ -215,14 +215,14 @@ const Thread = ({ check, theme, darkmode }) => {
                       xs={4}
                       sm={3}
                       md={2}
-                      className="d-flex align-items-center justify-content-center pl-4 pr-0 pt-2"
+                      className="d-flex align-items-center justify-content-center ml-2 px-0 pt-2"
+                      style={{marginRight: "-8px"}}
                     >
                       <p
-                        className={`fit mb-0 border rounded-pill text-white text-center ${thread.postSubject.replace(
+                        className={`text-pill mb-0 border rounded-pill text-white text-center ${thread.postSubject.replace(
                           /\s+/g,
                           ""
                         )}`}
-                        style={{ fontSize: "15px" }}
                       >
                         {thread.postSubject}
                       </p>
@@ -238,15 +238,15 @@ const Thread = ({ check, theme, darkmode }) => {
                     </Col>
 
                   </Row>
+
                   <Row>
                     <Col>
                       {" "}
-                      <h5 className="my-2" style={{ fontSize: "19px" }}>
+                      <h5 className="mt-2 mb-3 text-head">
                         {thread.postTitle}
                       </h5>
                       <p
-                        className="my-2 text-dark"
-                        style={{ fontSize: "15px" }}
+                        className="my-2 text-body text-warning"
                       >
                         {thread.post}
                       </p>
@@ -254,6 +254,7 @@ const Thread = ({ check, theme, darkmode }) => {
                     </Col>
                   </Row>
                 </Col>
+
               </Row>
 
               <Row>

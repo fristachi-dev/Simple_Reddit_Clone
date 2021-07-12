@@ -8,15 +8,18 @@ const Comment = ({ commentid, username, date, comment, deleteComment, darkmode, 
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let dt = date.getDate();
+    let temp;
+
+    const monthAbb = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dev"];
 
     if (dt < 10) {
       dt = "0" + dt;
     }
-    if (month < 10) {
-      month = "0" + month;
-    }
 
-    let res = `${dt}-${month}-${year}`;
+    temp = year.toString();
+    year = temp.slice(-2)
+
+    let res = `${monthAbb[month - 1]}. ${dt} '${year}`;
     return res;
   };
 
@@ -27,32 +30,25 @@ const Comment = ({ commentid, username, date, comment, deleteComment, darkmode, 
   return (
     <Container
       className={
-        "border border-light rounded p-3 my-3 " +
-        (darkmode ? "theme-dark-grey" : "bg-light")
+        "px-3 pb-2 my-3 " +
+        (darkmode ? "theme-dark-grey" : "bg-white")
       }
     >
-      <Row>
+
+      <Row className="py-2 comment-head">
         <Col>
-          <span
-            style={{
-              fontWeight: "500",
-              fontSize: "18px",
-            }}
-          >
+
+          <span className="text-head">
             {username}
           </span>
-          <span
-            className="ml-2"
-            style={{
-              fontSize: "12px",
-              color: "#777",
-            }}
-          >
+
+          <span className="ml-2 post-header-text">
             {getDate(date)}
           </span>
+
           {currentUser == username ? (
             <span
-              className="float-right delete-comment"
+              className="float-right pt-1 delete-comment"
               onClick={getId}
             >
               delete
@@ -60,9 +56,16 @@ const Comment = ({ commentid, username, date, comment, deleteComment, darkmode, 
           ) : (
             <div></div>
           )}
-          <p className="mx-1 my-2">{comment}</p>
+          
         </Col>
       </Row>
+
+      <Row className="comment-body">
+        <Col>
+          <p className="mx-1 my-2 text-body">{comment}</p>
+        </Col>
+      </Row>
+
     </Container>
   );
 };
