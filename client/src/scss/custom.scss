@@ -107,6 +107,14 @@ $link-color: black;
   margin: -1px -1px;
 }
 
+// Banner
+.banner {
+  max-width: 100wv !important;
+  position: relative;
+  margin-top: 157px;
+  height: 100px;
+}
+
 // ---------- Post ---------- \\
 .post-header-text {
   color: $dark;
@@ -325,6 +333,9 @@ $link-color: black;
     .dropdown-menu {
       border-color: $warning;
     }
+  }
+  .navbar-toggler {
+    filter: brightness(200%);
   }
 
   //post

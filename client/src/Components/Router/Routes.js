@@ -15,6 +15,7 @@ const Routes = () => {
   const [loaded, setLoaded] = useState(false);
   const [checklogin, SetCheckLogIn] = useState(false);
   const [darkmode, setDarkMode] = useState(false);
+  const [scroll, setScroll] = useState(300);
 
   const check = () => {
     console.log("loggincheckrun");
@@ -83,7 +84,7 @@ const Routes = () => {
               path="/"
               render={() =>
                 loggedIn() ? (
-                  <PostFeed check={check} theme={theme} darkmode={darkmode} />
+                  <PostFeed check={check} theme={theme} darkmode={darkmode} scroll={scroll} />
                 ) : (
                   <Redirect to="/SignUp" />
                 )

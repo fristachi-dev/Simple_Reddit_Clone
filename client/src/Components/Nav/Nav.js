@@ -6,12 +6,16 @@ import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { CgFeed } from "react-icons/cg";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import "../../scss/custom.scss";
+// import Banner from "./Banner"
 import logo from "../../logo.png"
 
 const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
   const [sub, setSub] = useState(localStorage.getItem("sub"));
 
   return (
+    <div style={{ maxWidth: "100wv"}}>
+
+    
     <Navbar
       fixed="top"
       expand="sm"
@@ -92,6 +96,7 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
           </Nav.Item> */}
 
           <Nav style={{ maxWidth: "200px" }}>
+
             <Nav.Item className="mr-2 d-none d-sm-block">
               <BootstrapSwitchButton
                 onChange={theme}
@@ -155,10 +160,13 @@ const Navigation = ({ check, changeSub, drop, theme, darkmode }) => {
                 <SignOut check={check} />
               </NavDropdown.Item>
             </NavDropdown>
+          
           </Nav>
         </Nav>
       </Container>
     </Navbar>
+
+    </div>
   );
 };
 

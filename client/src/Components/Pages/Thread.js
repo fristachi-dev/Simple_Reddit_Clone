@@ -100,7 +100,7 @@ const Thread = ({ check, theme, darkmode }) => {
           getData();
           console.log(res.data.msg)
         });
-    } catch (err) {
+    } catch (err) { 
       console.log(err);
     }
   };
@@ -119,7 +119,7 @@ const Thread = ({ check, theme, darkmode }) => {
   const findThread = (post, id) => {
     const i = post.map((x) => x._id).indexOf(id);
     const temp = post[i];
-    return temp;
+    return temp; 
   };
 
   const getData = async () => {
@@ -131,7 +131,7 @@ const Thread = ({ check, theme, darkmode }) => {
       setLoaded(true);
     } catch (err) {
       console.log(err);
-    }
+    } 
   };
 
   useEffect(() => {
@@ -148,7 +148,7 @@ const Thread = ({ check, theme, darkmode }) => {
         darkmode={darkmode}
       />
 
-      <Row className="justify-content-md-center mt-5 pt-5">
+      <Row className="justify-content-md-center mt-5 pt-5 pb-5">
         <Col
           className={
             "border border-info rounded " +
