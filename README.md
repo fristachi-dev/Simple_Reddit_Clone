@@ -1,4 +1,4 @@
-#Threaddit
+# Threaddit
 
 Fullstack forum based social media app for topic based group discussions built using React, Node/Express, and Mongodb Database.
 
