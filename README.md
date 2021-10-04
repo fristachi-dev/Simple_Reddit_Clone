@@ -1,3 +1,9 @@
+#Threaddit
+
+Fullstack forum based social media app for topic based group discussions built using React, Node/Express, and Mongodb Database.
+
+![ScreenShot](./screenshot.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
