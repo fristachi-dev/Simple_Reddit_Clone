@@ -26,13 +26,28 @@ const Routes = () => {
     setDarkMode(!darkmode);
   };
 
+  // const getData = async () => {
+  //   try {
+  //     const res = await axios.get("/users").then((res) => {
+  //       setUsers(res.data);
+  //       // console.log("fetch users tried");
+  //       // console.log(res.data[0].username);
+  //     });
+  //     setLoaded(true);
+  //   } catch (err) {
+  //     console.log(err);
+  //     localStorage.setItem("token", "");
+  //     localStorage.setItem("user", "");
+  //   }
+  // };
+
   const getData = async () => {
     try {
+
       const res = await axios.get("/users").then((res) => {
         setUsers(res.data);
-        // console.log("fetch users tried");
-        // console.log(res.data[0].username);
       });
+      
       setLoaded(true);
     } catch (err) {
       console.log(err);

@@ -35,7 +35,13 @@ const PostFeed = ({ check, theme, darkmode }) => {
 
   const getData = async () => {
     try {
-      const res = await axios.get("/users").then((res) => {
+      const res = await axios.get("/users", 
+      {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      
+      }).then((res) => {
         setPost(postArr(res.data));
       });
       setLoaded(true);

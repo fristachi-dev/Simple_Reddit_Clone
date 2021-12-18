@@ -25,7 +25,6 @@ const SignUp = ({ check }) => {
       username: username,
       password: pass,
     };
-    console.log(user);
 
     await axios.post("/users/signup", user).then((res) => {
       if (res.data.msg == "User already exist") {
