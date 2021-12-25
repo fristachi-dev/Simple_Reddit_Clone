@@ -135,7 +135,7 @@ router.route("/signup").post(async (req, res) => {
             jwt.sign(
               { id: user.id },
               jwtSecret,
-              // { expiresIn: 10000 },
+              { expiresIn: "20d" },
               (err, token) => {
                 if (err) throw err;
                 res.json({
@@ -175,7 +175,7 @@ router.route("/signin").post(async (req, res) => {
       jwt.sign(
         { id: user.id },
         jwtSecret,
-        { expiresIn: 360000 },
+        { expiresIn: "20d" },
         (err, token) => {
           if (err) throw err;
           res.json({
